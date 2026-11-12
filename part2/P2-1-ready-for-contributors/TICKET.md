@@ -27,6 +27,7 @@ cd ~/git-lab/part2/p2-1-pocket-budget
 - [ ] `CONTRIBUTING.md` explains how to propose a change: issue first, branch, PR, test passes
 - [ ] `SECURITY.md` tells people not to open public issues for vulnerabilities, and how to report privately
 - [ ] `.github/CODEOWNERS` makes you the owner of everything
+- [ ] Private vulnerability reporting is on, so the "Report a vulnerability" button exists (it is off by default)
 - [ ] The repo has a description and at least three topics
 - [ ] The repo is marked as a template
 - [ ] A second public repo, `p2-1-from-template`, was created from it
@@ -34,7 +35,8 @@ cd ~/git-lab/part2/p2-1-pocket-budget
 ## Hints
 
 - Insights > Community Standards shows what is still missing.
-- On the web, **Add file > Create new file**, name it `LICENSE`, and GitHub offers **Choose a license template**.
+- On the web, **Add file > Create new file**, name it `LICENSE`, and click **Choose a license template**. That opens a separate page: pick MIT, fill in Year and Full name, then **Review and submit**, and commit.
+- Private vulnerability reporting: repo **Settings**, security section, or one `gh api` call (see the solution).
 - Chapter 10 has the file tree, the template steps and the `gh repo create --template` command.
 - Stuck? `SOLUTION.md` has one complete answer. Try first.
 

@@ -17,23 +17,32 @@ New branch ruleset**.
 - Name: `protect-main`
 - Enforcement status: **Active**
 - Target branches: **Add target > Include default branch**
-- Rules: tick **Require a pull request before merging** (required approvals 0)
-  and **Block force pushes**. Tick **Restrict deletions** too.
+- Rules: **Restrict deletions** and **Block force pushes** are already ticked.
+  Also tick **Require a pull request before merging** and leave required
+  approvals at 0.
+- Before you click **Create**, check that Enforcement status still says
+  **Active** and the target is the default branch. Check again on the ruleset
+  page afterwards.
 - **Create**
 
 ```bash
-gh ruleset list
-gh ruleset check main
+gh ruleset list --repo YOUR-ORG/p2-4-locked
+gh ruleset check main --repo YOUR-ORG/p2-4-locked
 ```
+
+`gh ruleset` commands need `--repo`, or you must run them inside the repo folder.
 
 ## 3. Prove a direct push is refused
 
 ```bash
 echo "direct" >> README.md
 git commit -am "test: direct push to main"
-git push                      # refused: GitHub names the ruleset
+git push                      # refused
 git reset --hard HEAD~1       # throw the test commit away
 ```
+
+The error starts with `GH013` and says "Changes must be made through a pull
+request". It links to the repo's rules page; it does not name the ruleset.
 
 ## 4. CODEOWNERS, through a PR
 
@@ -60,7 +69,9 @@ The team needs write access to count as a code owner; the setup script gave it
 write. Open the file on GitHub: errors in CODEOWNERS are highlighted there.
 
 Now change `infra/deploy.sh` on a new branch and open a PR. The PR's
-reviewers list shows `YOUR-ORG/platform`. Merge it.
+reviewers list shows `YOUR-ORG/platform`, even though you are the only member of
+that team. With required approvals at 0, you can merge it without anyone
+approving.
 
 ## 5. A PR from a fork
 
@@ -78,13 +89,14 @@ git push -u origin docs/runbook-step
 gh pr create --repo YOUR-ORG/p2-4-locked --head YOUR-USERNAME:docs/runbook-step --fill
 ```
 
-Leave **Allow edits from maintainers** on. As the org owner you can merge it,
-or close it if you prefer.
+Leave **Allow edits from maintainers** on. This PR only touches `docs/`, which
+you own by default, so it shows no requested reviewer. As the org owner you can
+merge it, or close it if you prefer.
 
 ## Check your work
 
 ```bash
-gh ruleset check main --repo YOUR-ORG/p2-4-locked
+gh ruleset check main --repo YOUR-ORG/p2-4-locked   # three rules: deletion, non_fast_forward, pull_request
 gh pr list --repo YOUR-ORG/p2-4-locked --state all
 gh api orgs/YOUR-ORG/teams/platform/repos --jq '.[].full_name'
 ```

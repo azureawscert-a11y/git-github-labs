@@ -11,6 +11,14 @@ answer.
 - Git (book Chapter 2) and the GitHub CLI `gh`, signed in with `gh auth login`.
 - A bash shell: Terminal on macOS or Linux, Git Bash on Windows.
 
+## Before you start: keep your email private
+
+Web commits, squash merges and "Apply suggestion" record your account's
+**primary** email, even if your local Git uses the no-reply address. In
+**Settings > Emails**, tick **Keep my email addresses private** and **Block
+command line pushes that expose my email**. Then set your local Git email to the
+no-reply address shown on that page (book Chapter 2).
+
 ## How each lab works
 
 ```bash

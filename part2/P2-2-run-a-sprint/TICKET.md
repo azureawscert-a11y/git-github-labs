@@ -50,7 +50,7 @@ cd ~/git-lab/part2/p2-2-tip-split
 
 ## Hints
 
-- You cannot approve your own PR, but you can comment on it. Use the **suggestion** button in a review comment, then **Commit suggestion**.
+- You cannot approve your own PR, but you can comment on it. Use the **suggestion** button in a review comment, then **Apply suggestion**.
 - `gh project` needs the `project` scope: `gh auth refresh -s project`.
 - Chapter 12 has the issue form syntax, Chapter 13 the PR flow, Chapter 14 the board.
 - Stuck? `SOLUTION.md` has one complete answer. Try first.

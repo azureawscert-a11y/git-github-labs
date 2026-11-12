@@ -57,16 +57,21 @@ gh issue create -t "Round each share up to the next dollar" -b "Optional flag, o
 
 ```bash
 gh project create --owner "@me" --title "P2-2 Sprint"
-gh project list --owner "@me"                       # note the number, say 3
-gh project link 3 --owner "@me" --repo YOUR-USERNAME/p2-2-tip-split
+N=$(gh project list --owner "@me" --format json \
+  --jq '.projects[] | select(.title=="P2-2 Sprint") | .number')
+gh project link "$N" --owner YOUR-USERNAME --repo YOUR-USERNAME/p2-2-tip-split
 for url in $(gh issue list --json url --jq '.[].url'); do
-  gh project item-add 3 --owner "@me" --url "$url"
+  gh project item-add "$N" --owner "@me" --url "$url"
 done
 ```
 
-On the web, open the project: **New view > Board**, group by **Status**, and
-move the three bugs to **Todo**. Then **... > Workflows > Item closed**: check it
-is on and sets Status to **Done**.
+`gh project link` needs your username after `--owner`, not `@me`, and needs
+`--repo`.
+
+On the web, open the project: **New view > Board**. The new view is named
+**View 2** and already groups by **Status**; rename it if you like. New items
+start in **Todo**. Then **... > Workflows > Item closed**: check it is on and
+sets Status to **Done**.
 
 ## 4. Three PRs
 
@@ -98,8 +103,10 @@ git switch main && git pull
 Open it the same way with `Fixes #2` in the body. Before merging, go to
 **Files changed**, click the line, start a review comment, press the
 **suggestion** button and change the text, for example `Each person pays:` to
-`Each person pays: $`. Submit the review as a comment, then **Commit
-suggestion** on the PR. Pull before you merge: `git pull`.
+`Each person pays: $`. Submit the review as a comment, then click **Apply
+suggestion** on the PR. The dialog shows a commit title (default "Update
+tip.py"), a message and **Commit changes**. **Add suggestion to batch** collects
+several suggestions into one commit. Pull before you merge: `git pull`.
 
 **PR 3, fixes #3.**
 
@@ -111,7 +118,9 @@ suggestion** on the PR. Pull before you merge: `git pull`.
 
 ## 5. Watching
 
-On the repo page: **Watch > Custom**, tick **Issues** and **Pull requests**, **Apply**.
+On the repo page: **Watch > Custom**. The checkboxes are Issues, Pull requests, Releases,
+Discussions and Security alerts. Tick **Issues** and **Pull requests**,
+**Apply**. After a reload the button reads **Unwatch** (any watch setting other than Participating shows Unwatch); open it and **Custom** has the tick.
 
 ## Check your work
 

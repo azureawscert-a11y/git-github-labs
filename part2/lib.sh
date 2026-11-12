@@ -17,12 +17,17 @@ need_tools() {
 }
 
 # need_scopes delete_repo project ...
-# Checks the scopes listed by `gh auth status` and tells you how to add missing ones.
+# Checks the scopes of the ACTIVE account in `gh auth status` and tells you how
+# to add missing ones. Other signed-in accounts are ignored.
 need_scopes() {
-  local status missing=()
+  local status active missing=()
   status="$(gh auth status 2>&1 || true)"
+  active="$(awk '/Logged in to/ { if (blk ~ /Active account: true/) printf "%s", blk; blk = "" }
+                 { blk = blk $0 "\n" }
+                 END { if (blk ~ /Active account: true/) printf "%s", blk }' <<<"$status")"
+  [[ -n "$active" ]] || active="$status"   # older gh: one account, no "Active account" line
   for s in "$@"; do
-    grep -q "'$s'" <<<"$status" || missing+=("$s")
+    grep -q "'$s'" <<<"$active" || missing+=("$s")
   done
   if ((${#missing[@]})); then
     local list; list="$(IFS=,; echo "${missing[*]}")"

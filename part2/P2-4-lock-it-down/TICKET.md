@@ -37,7 +37,7 @@ The setup script needs the `admin:org` scope to create the team:
 - [ ] `.github/CODEOWNERS` makes you the default owner and `@YOUR-ORG/platform` the owner of `/infra/`, merged through a PR
 - [ ] A PR that changes `infra/deploy.sh` shows the platform team as a requested reviewer
 - [ ] You forked the repo to your personal account and opened one PR from the fork, which you then merged or closed
-- [ ] `gh ruleset check main` lists the rules
+- [ ] `gh ruleset check main --repo YOUR-ORG/p2-4-locked` lists the rules
 
 ## Hints
 

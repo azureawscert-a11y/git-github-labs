@@ -64,9 +64,19 @@ gh run watch
 ## 4. Codespace: start, use, delete
 
 ```bash
-gh codespace create -R YOUR-USERNAME/p2-3-site -b main
+gh codespace create -R YOUR-USERNAME/p2-3-site -b main -m basicLinux32gb
 gh codespace code        # or open it from Code > Codespaces in the browser
 ```
+
+Without `-m`, `gh` asks you to pick a machine type, and fails if it has no
+terminal to ask in. A free account sees two: `basicLinux32gb` (2 cores) and
+`standardLinux32gb` (4 cores). Pick the 2-core one; it uses your allowance
+half as fast.
+
+A new codespace opens in Restricted Mode and asks **Do you trust the authors of
+the files in this folder?** Choose **Yes, I trust the authors**, and the
+terminal works. It greets you with "You are on a custom image defined in your
+devcontainer.json file."
 
 In the codespace terminal:
 
@@ -74,7 +84,9 @@ In the codespace terminal:
 python3 -m http.server 8000 --directory docs
 ```
 
-Open the forwarded port from the **Ports** tab and check the page. Then stop
+A message says the app on port 8000 is available (**Open in Browser**, **Make
+Public**). Or use the **Ports** tab. The address looks like
+`https://CODESPACE-NAME-8000.app.github.dev/`. Check the page. Then stop
 the server with Ctrl+C, close the codespace and delete it:
 
 ```bash
