@@ -154,5 +154,9 @@ git commit -q -m "chore: starting file for drill G1"
 write_mixed
 
 say "Ready. Your drill folder is $DIR"
-echo "Next: cd $DIR"
-echo "Then follow TICKET.md, variant $VARIANT."
+echo
+echo "IMPORTANT: you are still in the labs folder. Before any git command, run:"
+echo
+echo "    cd $DIR"
+echo
+echo "Then check: pwd must end in part1/g1-$VARIANT. Now follow TICKET.md, variant $VARIANT."

@@ -38,6 +38,25 @@ cd ~/git-lab/part1/g1-a
 **Start from:** one commit, `chore: starting file for drill G1`, plus three
 unstaged changes in `menu.txt`. Check with `git log --oneline` and `git status`.
 
+> **Wrong folder check.** Run `pwd` first. It must end in `git-lab/part1/g1-a`.
+> If `git diff` shows nothing, or `git add -p` says `No changes.`, you are
+> still in the labs folder. Run `cd ~/git-lab/part1/g1-a`. Never run this
+> drill's `git add` or `git commit` inside the labs folder.
+
+## How to read the diff
+
+```text
+--- a/menu.txt                     the old version is the "minus" side
++++ b/menu.txt                     the new version is the "plus" side
+@@ -4,7 +4,7 @@ Corner Cafe menu  a new chunk (hunk) starts here
+ Coffee ......... 3.50             starts with a space: unchanged
+-Latte .......... 4.25             starts with -: removed (red on screen)
++Latte .......... 4.50             starts with +: added (green on screen)
+```
+
+A changed line shows twice: the old line with `-`, then the new one with `+`.
+Book Chapter 3, "How to read a diff", explains every part.
+
 ## Do it
 
 Write your answer to each **Guess** before you run the command. Getting a
@@ -45,6 +64,7 @@ guess wrong is fine. Finding out *why* it was wrong is the point.
 
 1. **Look.** Run `git diff`.
    **Guess first:** how many separate chunks (lines starting `@@`) will it show?
+   If the screen ends in `(END)` or `:`, press `q` to get your prompt back.
 
 2. **Stage only the latte price.** Run `git add -p`. Git shows one chunk at a
    time and asks `Stage this hunk?`. Type `y` for the latte chunk and `n` for
