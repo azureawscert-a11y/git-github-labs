@@ -69,6 +69,7 @@ exact `gh auth refresh -s ...` command to run.
 | Lab | Ticket | Book chapters |
 |---|---|---|
 | [G1](part1/G1-split-the-commit/TICKET.md) | Split the commit: two changes and a debug line in one file | Start Here, 1, 3 |
+| [G2](part1/G2-teammate-conflict/TICKET.md) | Your teammate pushed first: rejected push, fetch, merge conflict | 4, 5, 6 |
 | [P2-1](part2/P2-1-ready-for-contributors/TICKET.md) | Make this repo ready for contributors | 9, 10, 11 |
 | [P2-2](part2/P2-2-run-a-sprint/TICKET.md) | Run a sprint | 12, 13, 14, 15 |
 | [P2-3](part2/P2-3-publish-and-share/TICKET.md) | Publish and share | 16, 17, 18 |
