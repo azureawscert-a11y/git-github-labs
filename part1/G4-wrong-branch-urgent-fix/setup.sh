@@ -36,7 +36,7 @@ fi
 mkdir -p "$DIR"
 cd "$DIR"
 git init -q --bare -b main team.git
-git clone -q team.git you 2>/dev/null
+git clone -q -c core.autocrlf=false team.git you 2>/dev/null
 cd you
 git symbolic-ref HEAD refs/heads/main
 data > "$DATA"; work > "$WORK"

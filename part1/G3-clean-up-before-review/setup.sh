@@ -59,7 +59,7 @@ cd "$DIR"
 git init -q --bare -b main team.git
 
 # Alex starts the project.
-alex clone -q team.git alex 2>/dev/null
+alex clone -q -c core.autocrlf=false team.git alex 2>/dev/null
 ( cd alex
   git symbolic-ref HEAD refs/heads/main
   base > "$FILE"
@@ -67,7 +67,7 @@ alex clone -q team.git alex 2>/dev/null
   alex push -q -u origin main )
 
 # You clone it, start a feature branch, commit in a hurry and push it.
-git clone -q team.git you
+git clone -q -c core.autocrlf=false team.git you
 ( cd you
   git switch -q -c "$BRANCH"
   messy

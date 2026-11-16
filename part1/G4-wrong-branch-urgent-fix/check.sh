@@ -61,7 +61,8 @@ br="$(git symbolic-ref --short -q HEAD || echo DETACHED)"
 if [[ "$br" == "$FEAT" ]]; then pass "You are back on $FEAT."
 else nope "You are back on $FEAT." "You are on '$br'. Run: git switch $FEAT"; fi
 
-if grep -qxF "$WIPLINE" "$WORK" 2>/dev/null; then pass "Your unfinished line is back in $WORK."
+# tr drops any Windows line endings, so the line still matches.
+if [[ -r "$WORK" ]] && tr -d '\r' < "$WORK" | has -xF "$WIPLINE"; then pass "Your unfinished line is back in $WORK."
 else nope "Your unfinished line is back in $WORK." "If git stash list shows it, run git stash pop on $FEAT. If the stash is empty, git reset --hard deleted it before you stashed: work that was never committed or stashed cannot be recovered. Start again and stash first."; fi
 
 if [[ -z "$(git stash list)" ]]; then pass "The stash is empty."

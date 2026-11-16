@@ -1,0 +1,7 @@
+# Store text files with LF in the repo (Chapter 2, Line endings).
+* text=auto
+# Shell scripts must keep LF, even on Windows, or bash fails with $'\r' errors.
+*.sh text eol=lf
+*.png binary
+# Keep the test harness out of the downloadable ZIP.
+.github export-ignore

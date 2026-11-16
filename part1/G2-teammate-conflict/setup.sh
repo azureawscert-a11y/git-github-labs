@@ -66,7 +66,7 @@ cd "$DIR"
 git init -q --bare -b main team.git
 
 # 2. Alex starts the project and pushes it.
-alex clone -q team.git alex 2>/dev/null
+alex clone -q -c core.autocrlf=false team.git alex 2>/dev/null
 ( cd alex
   git symbolic-ref HEAD refs/heads/main
   write_start
@@ -75,7 +75,7 @@ alex clone -q team.git alex 2>/dev/null
   alex push -q -u origin main )
 
 # 3. You clone the project, as you would on your first day.
-git clone -q team.git you
+git clone -q -c core.autocrlf=false team.git you
 
 # 4. Later, Alex changes one line and pushes. You have not fetched since.
 ( cd alex

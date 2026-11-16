@@ -1,0 +1,34 @@
+# Runs every Part 1 drill on Linux, macOS (bash 3.2) and Windows (Git Bash),
+# so the labs keep working for readers on all three.
+name: Drills
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drills:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # A new Git for Windows install converts line endings (core.autocrlf true).
+      - name: Use Windows default line endings
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf true
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Show versions
+        run: git --version && bash --version | head -1
+      - name: Run all drills
+        run: python .github/drill-test/run-drills.py

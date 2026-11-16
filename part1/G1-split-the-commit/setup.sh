@@ -15,6 +15,8 @@ DIR="$LAB_HOME/g1-$VARIANT"
 mkdir -p "$DIR"
 cd "$DIR"
 git init -q -b main
+# Practice files keep LF line endings, even where Git converts by default (Windows).
+git config core.autocrlf false
 
 if [[ "$VARIANT" == a ]]; then
 FILE=menu.txt
