@@ -169,6 +169,7 @@ same, and `check.sh` accepts both.
 ## Start over
 
 ```bash
+cd ~/git-lab/git-github-labs/part1/G2-teammate-conflict   # the drill folder, not the practice repo
 bash reset.sh       # asks you to type yes, then deletes ~/git-lab/part1/g2-a
 bash setup.sh
 ```
@@ -176,6 +177,7 @@ bash setup.sh
 ## Next week: try it cold
 
 ```bash
+cd ~/git-lab/git-github-labs/part1/G2-teammate-conflict   # the drill folder, not the practice repo
 bash setup.sh b     # a study group schedule: schedule.txt in ~/git-lab/part1/g2-b/you
 bash check.sh b
 bash reset.sh b

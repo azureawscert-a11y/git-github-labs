@@ -175,6 +175,7 @@ again from step 4.
 ## Start over
 
 ```bash
+cd ~/git-lab/git-github-labs/part1/G3-clean-up-before-review   # the drill folder, not the practice repo
 bash reset.sh       # asks you to type yes, then deletes ~/git-lab/part1/g3-a
 bash setup.sh
 ```
@@ -182,6 +183,7 @@ bash setup.sh
 ## Next week: try it cold
 
 ```bash
+cd ~/git-lab/git-github-labs/part1/G3-clean-up-before-review   # the drill folder, not the practice repo
 bash setup.sh b     # a new-starter guide on branch feature/setup-guide
 bash check.sh b
 bash reset.sh b

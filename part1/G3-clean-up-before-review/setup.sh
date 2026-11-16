@@ -89,3 +89,9 @@ echo
 echo "    cd $DIR/you"
 echo
 echo "Then check: pwd must end in g3-$VARIANT/you. Now follow TICKET.md, variant $VARIANT."
+echo
+ARG=""; [[ "$VARIANT" == b ]] && ARG=" b"
+echo "When you finish, check and reset from any folder with:"
+echo
+echo "    bash $HERE/check.sh$ARG"
+echo "    bash $HERE/reset.sh$ARG"

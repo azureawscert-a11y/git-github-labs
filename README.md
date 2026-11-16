@@ -42,10 +42,14 @@ no-reply address shown on that page (book Chapter 2).
 ```bash
 cd part1/G1-split-the-commit
 bash setup.sh     # creates a practice repo in ~/git-lab/part1
-# read TICKET.md and do the work
+# run the cd line it prints, read TICKET.md and do the work there
+cd ~/git-lab/git-github-labs/part1/G1-split-the-commit   # back to the drill folder
 bash check.sh     # PASS or FAIL for each "Done when" item, with a hint
 bash reset.sh     # deletes the practice repo so you can start over
 ```
+
+`check.sh` and `reset.sh` live in the drill folder, not in the practice repo.
+`setup.sh` also prints their full paths, which work from any folder.
 
 Each drill has a second variant for a cold retry a few days later:
 `bash setup.sh b`, `bash check.sh b`, `bash reset.sh b`.

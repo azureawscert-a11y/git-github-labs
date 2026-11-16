@@ -67,7 +67,7 @@ git status           # nothing to commit, working tree clean
 
 ```bash
 git log --oneline
-bash /path/to/git-github-labs/part1/G1-split-the-commit/check.sh
+bash ~/git-lab/git-github-labs/part1/G1-split-the-commit/check.sh
 ```
 
 ```text
