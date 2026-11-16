@@ -179,8 +179,8 @@ bash setup.sh
 ```bash
 cd ~/git-lab/git-github-labs/part1/G2-teammate-conflict   # the drill folder, not the practice repo
 bash setup.sh b     # a study group schedule: schedule.txt in ~/git-lab/part1/g2-b/you
-bash check.sh b
-bash reset.sh b
+bash check.sh b     # after you finish the ticket, from this folder
+bash reset.sh b     # when you want to start over
 ```
 
 The variant b ticket: change the topic line to

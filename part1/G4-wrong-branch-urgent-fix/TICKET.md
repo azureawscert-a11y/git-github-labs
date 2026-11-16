@@ -192,8 +192,8 @@ bash setup.sh
 ```bash
 cd ~/git-lab/git-github-labs/part1/G4-wrong-branch-urgent-fix   # the drill folder, not the practice repo
 bash setup.sh b     # an on-call page and a runbook: ~/git-lab/part1/g4-b/you
-bash check.sh b
-bash reset.sh b
+bash check.sh b     # after you finish the ticket, from this folder
+bash reset.sh b     # when you want to start over
 ```
 
 The variant b situation: two runbook commits are on main by mistake, a line is

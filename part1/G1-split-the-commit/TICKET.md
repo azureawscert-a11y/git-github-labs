@@ -155,8 +155,8 @@ without reading this page or the solution:
 ```bash
 cd ~/git-lab/git-github-labs/part1/G1-split-the-commit   # the drill folder, not the practice repo
 bash setup.sh b     # a library's opening hours: hours.txt in ~/git-lab/part1/g1-b
-bash check.sh b
-bash reset.sh b
+bash check.sh b     # after you finish the ticket, from this folder
+bash reset.sh b     # when you want to start over
 ```
 
 Variant b has a fix, a new holiday line with a typo to correct after staging,

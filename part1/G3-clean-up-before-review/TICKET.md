@@ -185,8 +185,8 @@ bash setup.sh
 ```bash
 cd ~/git-lab/git-github-labs/part1/G3-clean-up-before-review   # the drill folder, not the practice repo
 bash setup.sh b     # a new-starter guide on branch feature/setup-guide
-bash check.sh b
-bash reset.sh b
+bash check.sh b     # after you finish the ticket, from this folder
+bash reset.sh b     # when you want to start over
 ```
 
 The variant b ticket: two clean commits on the latest main,
