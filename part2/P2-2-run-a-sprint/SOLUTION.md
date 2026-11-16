@@ -68,7 +68,7 @@ done
 `gh project link` needs your username after `--owner`, not `@me`, and needs
 `--repo`.
 
-On the web, open the project: **New view > Board**. The new view is named
+On the web, open the project: **New view > Board**. (If you create the project on the web, pick the **Table** template and use **Import items from repository** to add the open issues. Several workflows, including **Item closed**, are already on by default.) The new view is named
 **View 2** and already groups by **Status**; rename it if you like. New items
 start in **Todo**. Then **... > Workflows > Item closed**: check it is on and
 sets Status to **Done**.
@@ -104,8 +104,7 @@ Open it the same way with `Fixes #2` in the body. Before merging, go to
 **Files changed**, click the line, start a review comment, press the
 **suggestion** button and change the text, for example `Each person pays:` to
 `Each person pays: $`. Submit the review as a comment, then click **Apply
-suggestion** on the PR. The dialog shows a commit title (default "Update
-tip.py"), a message and **Commit changes**. **Add suggestion to batch** collects
+suggestion** on the PR. The dialog shows a commit title (default "Apply suggestion from @your-username"), a message and **Commit changes**. **Add suggestion to batch** collects
 several suggestions into one commit. Pull before you merge: `git pull`.
 
 **PR 3, fixes #3.**

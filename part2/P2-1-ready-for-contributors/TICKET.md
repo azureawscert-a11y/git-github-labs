@@ -20,6 +20,13 @@ bash setup.sh
 cd ~/git-lab/part2/p2-1-pocket-budget
 ```
 
+The starter has four files: `README.md`, `budget.py`, `sample.csv` and `test_budget.py`.
+Run it with `python3 budget.py sample.csv` and test it with `python3 -m unittest`.
+
+Making a new file from Terminal: `nano CONTRIBUTING.md` (type, then Ctrl+O, Enter,
+Ctrl+X), or `mkdir -p .github && nano .github/CODEOWNERS`. You can also use
+**Add file > Create new file** on github.com, then `git pull`.
+
 ## Done when
 
 - [ ] `README.md` says what the tool does, how to run it, how to run the test, and links to CONTRIBUTING (Chapter 11 Markdown: a heading, a code block, a link)
@@ -42,9 +49,18 @@ cd ~/git-lab/part2/p2-1-pocket-budget
 
 ## Start over
 
+Do this first, once. It opens a browser to approve:
+
 ```bash
+gh auth refresh -s delete_repo
+```
+
+Then go back to the folder where you ran `setup.sh` (the lab folder) and run:
+
+```bash
+cd ~/Git-GitHub-Guide/git-github-labs/part2/P2-1-ready-for-contributors   # adjust to where you cloned the labs
 bash reset.sh
 ```
 
-This deletes both lab repos and the local folder. You need the `delete_repo`
-scope once: `gh auth refresh -s delete_repo`.
+This deletes both lab repos and the local folder. Running `setup.sh` again later
+starts fresh.

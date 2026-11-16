@@ -7,7 +7,7 @@ Chapters 19 and 20. About 45 minutes.
 Teams, team code owners and organization repos need an organization. Create a
 free one for practice: **Settings > Organizations > New organization**, choose
 the **Free** plan, and give it a name such as `yourname-lab`. You are its owner.
-Nothing here needs a paid plan, because the lab repo is public.
+Nothing here needs a paid plan, because the lab repo is public. The form asks for a contact email; use your own.
 
 ## The ticket
 

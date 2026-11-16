@@ -5,6 +5,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 source "$HERE/../lib.sh"
 
 need_tools
+warn_identity
 ME="$(me)"
 REPO="$ME/p2-1-pocket-budget"
 DIR="$LAB_HOME/p2-1-pocket-budget"

@@ -73,8 +73,8 @@ terminal to ask in. A free account sees two: `basicLinux32gb` (2 cores) and
 `standardLinux32gb` (4 cores). Pick the 2-core one; it uses your allowance
 half as fast.
 
-A new codespace opens in Restricted Mode and asks **Do you trust the authors of
-the files in this folder?** Choose **Yes, I trust the authors**, and the
+A new codespace may ask **Do you trust the authors of the files in this
+folder?** If it does, choose **Yes, I trust the authors**. Either way, the
 terminal works. It greets you with "You are on a custom image defined in your
 devcontainer.json file."
 

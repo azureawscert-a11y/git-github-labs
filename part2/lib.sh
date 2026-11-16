@@ -36,6 +36,19 @@ need_scopes() {
   fi
 }
 
+# warn_identity: your commits should not carry a private email address.
+# Warns (does not stop) when git's email is not a GitHub no-reply address.
+warn_identity() {
+  local email; email="$(git config user.email)"
+  if [[ "$email" != *@users.noreply.github.com ]]; then
+    printf '\nNOTE: git will sign your commits with %s\n' "$email"
+    printf 'That address becomes public in a public repo. Safer: GitHub > Settings > Emails,\n'
+    printf 'turn on "Keep my email addresses private", then run:\n'
+    printf '  git config --global user.email "ID+USERNAME@users.noreply.github.com"\n'
+    printf '(your exact no-reply address is shown on that same Emails page). See Chapter 2.\n'
+  fi
+}
+
 me() { gh api user --jq .login; }
 
 repo_exists() { gh repo view "$1" >/dev/null 2>&1; }
