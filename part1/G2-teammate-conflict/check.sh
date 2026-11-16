@@ -48,18 +48,18 @@ if (( mine >= 1 )); then pass "Your work is on the shared repo."
 else nope "Your work is on the shared repo." "Nothing of yours reached it yet. Finish the merge, then git push."; fi
 
 shared="$(git show "origin/main:$FILE" 2>/dev/null || true)"
-if printf '%s\n' "$shared" | grep -qE '^(<<<<<<<( |$)|=======$|>>>>>>>( |$))'; then
+if printf '%s\n' "$shared" | has -E '^(<<<<<<<( |$)|=======$|>>>>>>>( |$))'; then
   nope "The shared file has no conflict markers." "Markers were committed. Delete the <<<<<<<, ======= and >>>>>>> lines, then git add $FILE, git commit and git push."
 else pass "The shared file has no conflict markers."; fi
 
 mline="$(printf '%s\n' "$shared" | grep "^$MINE_KEY " || true)"
-if printf '%s' "$mline" | grep -qi "$MINE_WANT"; then pass "On the shared repo, $MINE_WORDS."
+if printf '%s' "$mline" | has -i "$MINE_WANT"; then pass "On the shared repo, $MINE_WORDS."
 else nope "On the shared repo, $MINE_WORDS." "It says: ${mline:-nothing}. Edit $FILE, commit and push."; fi
 
 bline="$(printf '%s\n' "$shared" | grep "^$BOTH_KEY " || true)"
 has_a=0; has_b=0
-printf '%s' "$bline" | grep -qi "$BOTH_A" && has_a=1
-printf '%s' "$bline" | grep -qi "$BOTH_B" && has_b=1
+printf '%s' "$bline" | has -i "$BOTH_A" && has_a=1
+printf '%s' "$bline" | has -i "$BOTH_B" && has_b=1
 if ((has_a && has_b)); then pass "On the shared repo, $BOTH_WORDS."
 elif ((has_b)); then nope "On the shared repo, $BOTH_WORDS." "It says: $bline. You kept only your side and dropped Alex's change. Edit the line to keep both, then commit and push."
 elif ((has_a)); then nope "On the shared repo, $BOTH_WORDS." "It says: $bline. You kept only Alex's side and lost your own change. Edit the line to keep both, then commit and push."

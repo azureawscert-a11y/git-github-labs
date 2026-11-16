@@ -34,18 +34,18 @@ fi
 
 root="$(git rev-list --max-parents=0 origin/main | tail -n 1)"
 shared_new="$(git rev-list --count "$root"..origin/main)"
-if git log origin/main --format=%s | grep -qxF -e "$M1" -e "$M2"; then
+if git log origin/main --format=%s | has -xF -e "$M1" -e "$M2"; then
   nope "The feature commits are not on the shared main." "They were pushed to main. Start again: bash reset.sh $VARIANT && bash setup.sh $VARIANT. Move them to a branch before you push."
 else pass "The feature commits are not on the shared main."; fi
 
 shared="$(git show "origin/main:$DATA")"
-if printf '%s\n' "$shared" | grep -qxF "$GOOD" && ! printf '%s\n' "$shared" | grep -qxF "$BAD"; then pass "The urgent fix is on the shared main."
+if printf '%s\n' "$shared" | has -xF "$GOOD" && ! printf '%s\n' "$shared" | has -xF "$BAD"; then pass "The urgent fix is on the shared main."
 else nope "The urgent fix is on the shared main." "In $DATA the line must read: $GOOD. Fix it on main, commit, git push."; fi
 
 if [[ "$shared_new" == 1 ]] && [[ "$(git diff --name-only "$root" origin/main)" == "$DATA" ]]; then pass "The shared main got exactly one new commit, touching only $DATA."
 else nope "The shared main got exactly one new commit, touching only $DATA." "It has $shared_new new commit(s), changing: $(git diff --name-only "$root" origin/main | tr '\n' ' '). The hotfix should be one small commit."; fi
 
-if git show "origin/main:$WORK" | grep -qxF "$WIPLINE"; then
+if git show "origin/main:$WORK" | has -xF "$WIPLINE"; then
   nope "Your unfinished work did not reach main." "The half-done line was pushed with the hotfix. git stash before you fix, so only the fix goes out."
 else pass "Your unfinished work did not reach main."; fi
 
@@ -53,7 +53,7 @@ if [[ "$(git rev-parse main)" == "$(git rev-parse origin/main)" ]]; then pass "Y
 else nope "Your main matches the shared main." "Your main has $(git rev-list --count origin/main..main) commit(s) the shared repo does not, and lacks $(git rev-list --count main..origin/main). On main: git reset --hard origin/main (after the feature commits are safe on their branch)."; fi
 
 if git rev-parse -q --verify "$FEAT" >/dev/null; then
-  if git log "$FEAT" --format=%s | grep -qxF "$M1" && git log "$FEAT" --format=%s | grep -qxF "$M2"; then pass "Branch $FEAT has both feature commits."
+  if git log "$FEAT" --format=%s | has -xF "$M1" && git log "$FEAT" --format=%s | has -xF "$M2"; then pass "Branch $FEAT has both feature commits."
   else nope "Branch $FEAT has both feature commits." "It is missing one. git reflog shows where main was before you reset it; git branch -f $FEAT <that hash> fixes the label."; fi
 else nope "Branch $FEAT exists." "Make it on the commit that has your two feature commits: git branch $FEAT <hash>. git reflog shows the hash if main has already moved."; fi
 

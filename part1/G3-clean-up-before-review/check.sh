@@ -40,7 +40,7 @@ br="$(git symbolic-ref --short -q HEAD || echo DETACHED)"
 if [[ "$br" == "$BRANCH" ]]; then pass "You are on $BRANCH."
 else nope "You are on $BRANCH." "You are on '$br'. Run: git switch $BRANCH"; fi
 
-if git log origin/main --format='%s' | grep -qx "$ALEX_MSG"; then pass "main on the shared repo still has Alex's commit."
+if git log origin/main --format='%s' | has -x "$ALEX_MSG"; then pass "main on the shared repo still has Alex's commit."
 else nope "main on the shared repo still has Alex's commit." "main was overwritten. Only your feature branch should ever be force pushed. Start again: bash reset.sh $VARIANT && bash setup.sh $VARIANT"; fi
 
 R="origin/$BRANCH"
@@ -58,25 +58,25 @@ if [[ "$count" == 2 ]]; then pass "The shared branch has exactly two commits."
 else nope "The shared branch has exactly two commits." "It has $count. In git rebase -i, keep two lines as pick or reword and mark the others fixup."; fi
 
 final="$(git show "$R:$FILE" 2>/dev/null || true)"
-if printf '%s\n' "$final" | grep -qE "$TYPOS"; then
+if printf '%s\n' "$final" | has -E "$TYPOS"; then
   nope "No typos are left in $FILE." "A typo fix was lost, often by marking it drop instead of fixup. git reflog shows where your branch was; git reset --hard <that hash> gets it back."
 else pass "No typos are left in $FILE."; fi
-if [[ "$(printf '%s\n' "$final" | tail -n 1)" == "$FINAL_LAST" ]] && printf '%s\n' "$final" | grep -q "${FIRST_HAS[0]}"; then
+if [[ "$(printf '%s\n' "$final" | tail -n 1)" == "$FINAL_LAST" ]] && printf '%s\n' "$final" | has "${FIRST_HAS[0]}"; then
   pass "All of your work is still in $FILE."
 else nope "All of your work is still in $FILE." "Something is missing. A commit marked drop is deleted. git reflog shows where your branch was before; git reset --hard <that hash> gets it back, then try again."; fi
 
 if (( count == 2 )); then
   c1="$(git rev-list --reverse origin/main.."$R" | head -n 1)"; c2="$(git rev-list --reverse origin/main.."$R" | tail -n 1)"
   t1="$(git show "$c1:$FILE")"
-  ok1=1; for k in "${FIRST_HAS[@]}"; do printf '%s' "$t1" | grep -qF "$k" || ok1=0; done
-  printf '%s' "$t1" | grep -qF "$FIRST_NOT" && ok1=0
+  ok1=1; for k in "${FIRST_HAS[@]}"; do printf '%s' "$t1" | has -F "$k" || ok1=0; done
+  printf '%s' "$t1" | has -F "$FIRST_NOT" && ok1=0
   if ((ok1)); then pass "Commit 1 holds $FIRST_WORDS, with the typo fixed."
   else nope "Commit 1 holds $FIRST_WORDS, with the typo fixed." "Commit 1 should be the first three messy commits folded together. Mark wip and the first typo fix as fixup under it."; fi
-  if [[ "$(git show "$c2:$FILE" | tail -n 1)" == "$FINAL_LAST" ]] && git show "$c2" | grep -q "^+.*$SECOND_HAS"; then pass "Commit 2 holds $SECOND_WORDS, with its typo fixed."
+  if [[ "$(git show "$c2:$FILE" | tail -n 1)" == "$FINAL_LAST" ]] && git show "$c2" | has "^+.*$SECOND_HAS"; then pass "Commit 2 holds $SECOND_WORDS, with its typo fixed."
   else nope "Commit 2 holds $SECOND_WORDS, with its typo fixed." "Commit 2 should be the fourth messy commit with the last typo fix folded in as fixup."; fi
   for c in "$c1" "$c2"; do
     subj="$(git log -1 --format=%s "$c")"
-    if printf '%s' "$subj" | grep -qE '^(docs|feat|fix|chore)(\([a-z0-9-]+\))?!?: .{8,}'; then pass "Message \"$subj\" says what changed."
+    if printf '%s' "$subj" | has -E '^(docs|feat|fix|chore)(\([a-z0-9-]+\))?!?: .{8,}'; then pass "Message \"$subj\" says what changed."
     else nope "Message \"$subj\" says what changed." "Use the style from Chapter 22, such as docs: add the payment question. Change it with reword in git rebase -i."; fi
   done
 fi

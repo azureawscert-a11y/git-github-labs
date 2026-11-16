@@ -64,7 +64,7 @@ for c in $(git rev-list --reverse "$root"..HEAD); do
     nope "Commit \"$subj\" holds one change only." \
       "It holds: $(printf '%s' "$ch" | tr '|' ' '). Use git add -p and answer y only for the hunk you want."
   fi
-  if (( ${#subj} < 10 )) || printf '%s' "$subj" | grep -qiE '^(wip|update|updates|changes|fix|stuff|misc|test)$'; then
+  if (( ${#subj} < 10 )) || printf '%s' "$subj" | has -iE '^(wip|update|updates|changes|fix|stuff|misc|test)$'; then
     nope "Commit \"$subj\" has a message that says what changed." \
       "Not pushed yet, so if it is your last commit: git commit --amend -m \"fix: ...\" (Chapter 22 has the style)."
   fi
@@ -72,7 +72,7 @@ done
 ((got_fix)) || nope "One commit holds $FIX_WORDS." "Stage that hunk alone with git add -p, then commit."
 ((got_feat)) || nope "One commit holds $FEAT_WORDS." "Stage that hunk alone with git add -p, then commit."
 
-if git --no-pager log -p --all | grep -q 'DEBUG'; then
+if git --no-pager log -p --all | has 'DEBUG'; then
   nope "No commit contains the debug line." "Look with: git log -p | grep -n DEBUG"
 else pass "No commit contains the debug line."; fi
 

@@ -10,6 +10,10 @@ LAB_HOME="${LAB_HOME:-$HOME/git-lab/part1}"
 say()  { printf '\n== %s\n' "$*"; }
 fail() { printf '\nSTOP: %s\n' "$*" >&2; exit 1; }
 
+# has PATTERN: like grep -q, but reads all of its input first. With pipefail,
+# grep -q can stop early and make the command before it fail with SIGPIPE.
+has() { grep "$@" >/dev/null; }
+
 need_git() {
   command -v git >/dev/null 2>&1 || fail "git is not installed (Start Here, Step 3)."
   git config user.name  >/dev/null 2>&1 || fail "git user.name is not set (Start Here, Step 4)."
