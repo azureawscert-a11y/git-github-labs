@@ -81,6 +81,10 @@ exact `gh auth refresh -s ...` command to run.
 | [P2-3](part2/P2-3-publish-and-share/TICKET.md) | Publish and share | 16, 17, 18 |
 | [P2-4](part2/P2-4-lock-it-down/TICKET.md) | Lock it down | 19, 20 |
 
+## Found a mistake?
+
+Corrections to the book are listed in [ERRATA.md](ERRATA.md). Found one that is not there? Open an issue.
+
 ## Safety
 
 - Everything the labs create is public. Never put a password, key, token or personal detail in a lab repo or gist.
