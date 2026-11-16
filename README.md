@@ -8,6 +8,21 @@ script lets you start over.
 - **Part 1 drills** run on your own computer with Git only. No GitHub account, and no internet once you have cloned this repo.
 - **Part 2 labs** use your own free GitHub account.
 
+## Free sample and the book
+
+[**Download the free sample (PDF, 18 pages)**](https://github.com/azureawscert-a11y/git-github-labs/raw/main/sample/Git-GitHub-FREE-SAMPLE.pdf): Start Here, the drills page, the pull request chapter opening, the troubleshooting chapter and the GH-900 objective map.
+
+The full book has 151 pages: 30 chapters from your first terminal command to a team workflow, 145 quiz questions, these labs, a capstone and GH-900 exam prep. A separate Practice Pack adds two full 60-question practice exams.
+
+**Get the book:** [jeysingh.com/git](https://www.jeysingh.com/git)
+
+- [Complete Bundle: book, labs and Practice Pack](https://jeysingh.gumroad.com/l/git-github-complete-bundle)
+- [Study Guide and labs only](https://jeysingh.gumroad.com/l/git-github-guide)
+- [Practice Pack only](https://jeysingh.gumroad.com/l/git-github-practice-pack)
+- [Study Guide on Leanpub](https://leanpub.com/git-github-guide)
+
+Free guides on the site: [git push rejected (fetch first)](https://www.jeysingh.com/learn/git-push-rejected-fetch-first), [git reset vs revert vs restore](https://www.jeysingh.com/learn/git-reset-vs-revert-vs-restore), [GH-900 study plan](https://www.jeysingh.com/learn/gh-900-study-plan).
+
 ## Get the labs
 
 ```bash
